@@ -198,7 +198,7 @@
 
         addRed("Aisha")
         addGray("Du er en 14 år gammel jente oppdratt av en alene mor og en onkel. Familien sliter med å få nok penger til et helt måltid.",null)
-        addGray("En dag, mens du sover, kommer onkelen din inn på rommet ditt og utsetter deg voldtekt", "Hva gjør du nå?")
+        addGray("En dag, mens du sover, kommer onkelen din inn på rommet ditt og utsetter deg for voldtekt", "Hva gjør du nå?")
         addButtons(["Si stopp", "La han"], ["sh", "lh"], [f1,f2])
 
         return
@@ -210,9 +210,9 @@
 
         addRed("Du svarer ja")
         addGray("Dere vet svært lite om temaet og gjør det uten beskyttelse.",null)
-        addGray("Etter noen uker fikk du aldri mensen og etter hvert begynte du å føle kvalmen uvanlig ofte.",null)
+        addGray("Noen uker har gått, og du har enda ikke fått mensen, og enda verre, du begynner å føle deg kvalmen hele tiden.",null)
 
-        addGray("Du kjøpter en graviditetstest og testet positivt","Hva gjør du nå?")
+        addGray("Du kjøpter en graviditetstest og tester positivt","Hva gjør du nå?")
         addButtons(["Fortell mor og far", "Ikke si noe", "Fortell vennine", "Ring kjæresten"], ["fmog","isn","fv","rk"], [add5,add6,add7,add8])
 
         return
@@ -223,7 +223,7 @@
         removeEventId("Nei0", add4);
 
         addRed("Du svarer nei")
-        addGray("Han begynner uansett", "Hva gjør du nå?")
+        addGray("Han begynner uansett.", "Hva gjør du nå?")
         addButtons(["Stopp han", "La han fortsette"], ["sh", "lhf"], [add11, add12])
 
         return
@@ -236,7 +236,7 @@
         removeEventId("rk", add8);
 
         addRed("Du forteller mor og far")
-        addGray("De kaller deg en hore og kaster deg ut av huset.", "Hva gjør du nå?")
+        addGray("De kaller deg hore og kaster deg ut av huset.", "Hva gjør du nå?")
         addButtons(["Fød ungen", "Ta abort"],["fu","ta"],[add9,add10])
 
         return
@@ -261,7 +261,7 @@
         removeEventId("rk", add8);
         ikkeSiNoe = true
         addRed("Du forteller en vennine")
-        addGray("De kaller deg en hore og nå går det rykter om deg rundt hele skolen.", "Hva gjør du nå?")
+        addGray("Venninen din kaller deg hore og sprer rykter om deg rundt hele skolen.", "Hva gjør du nå?")
         addButtons(["Fød ungen", "Ta abort"],["fu","ta"],[add9,add10])
 
         return
@@ -274,8 +274,8 @@
         removeEventId("rk", add8);
         ikkeSiNoe = true
         addRed("Du ringer kjæresten din")
-        addGray("Han la på med en gang han hørte nyhetene og kom aldri på skolen dagene fremover.", null)
-        addGray("Etterhvert flytter han og bytter skole.", "Hva gjør du nå?")
+        addGray("Han la på telefonen med en gang han hørte nyhetene og har holdt seg unna skolen dagene etterpå.", null)
+        addGray("En stund senere, flytter han og bytter skole.", "Hva gjør du nå?")
         addButtons(["Fød ungen", "Ta abort"],["fu","ta"],[add9,add10])
         return
     }
@@ -288,8 +288,8 @@
         if (ikkeSiNoe == true) {
             addGray("Foreldrene dine kaster deg ut av huset og kaller deg for en hore.", null)
         }
-        addGray("Når tiden var klar til å føde gikk du på et offentlig toalett og begynte å føde.", null)
-        addGray("Etter hvert som fødselen fortsetter fram, mister du bevisstheten og deretter livet, sammen med barnet ditt.")
+        addGray("Når tiden var inne til å føde går du inn på et offentlig toalett og begynner å føde.", null)
+        addGray("Etter hvert som fødselen fortsetter, mister du bevisstheten og deretter livet, sammen med barnet ditt.")
 
         death()
 
@@ -301,7 +301,7 @@
         removeEventId("ta", add10)
 
         addRed("Du velger å ta abort")
-        addGray("Det finnes flere forskjellige måter på å ta abort", "Hvilken metode ønsker du å gjør?")
+        addGray("Det finnes forskjellige måter på å ta abort på", "Hvilken metode ønsker du å gjøre?")
 
         addButtons(["Stikke seg med noe skarpt", "Drikke noe etsende", "Finn piller på et ulovlig marked"], ["a0","b0","c0"], [add13,add14,add15])
         return
@@ -312,10 +312,9 @@
         removeEventId("lhf", add12)
 
         addRed("Du prøver å stoppe han")
-        addGray("Han bruker vold og fortsetter likevel.", null)
-        addGray("Etter noen uker fikk du aldri mensen og etter hvert begynte du å føle kvalmen uvanlig ofte.",null)
+        addGray("Han bruker vold og fortsetter allikevel.", null)
+        addGray("Noen uker har gått, og du har enda ikke fått mensen, og enda verre, du begynner å føle deg kvalmen hele tiden.",null)
         addButtons(["Fortell mor og far", "Ikke si noe", "Fortell vennine", "Ring kjæresten"], ["fmog","isn","fv","rk"], [add5,add6,add7,add8])
-
 
         return
     }
@@ -325,7 +324,7 @@
         removeEventId("lhf", add12)
 
         addRed("Du lar han fortsette")
-        addGray("Etter noen uker fikk du aldri mensen og etter hvert begynte du å føle kvalmen uvanlig ofte.",null)
+        addGray("Noen uker har gått, og du har enda ikke fått mensen, og enda verre, du begynner å føle deg kvalmen hele tiden.",null)
         addButtons(["Fortell mor og far", "Ikke si noe", "Fortell vennine", "Ring kjæresten"], ["fmog","isn","fv","rk"], [add5,add6,add7,add8])
         return
     }
@@ -336,8 +335,8 @@
         removeEventId("c0", add15)
 
         addRed("Du bestemmer deg for å stikke deg selv")
-        addGray("Du fant den skarpeste kniven i skuffen og stakk deg selv i livmoren.", null)
-        addGray("Det gjør så vondt til det punktet du mister bevisstheten din og deretter livet, sammen med bayen.", null)
+        addGray("Du finner den skarpeste kniven i skuffen og stikker deg selv i livmoren.", null)
+        addGray("Det gjør så vondt til det punktet du mister bevisstheten din og deretter livet, sammen med barnet ditt.", null)
         death()
         return
     }
@@ -349,7 +348,7 @@
 
         addRed("Du bestemmer deg for å drikke noe etsende")
         addGray("Du finner frem det sterkeste vaskemiddelet du har, og drikker det", null)
-        addGray("Det gjør så vondt til det punktet du mister bevisstheten din og deretter livet, sammen med bayen.", null)
+        addGray("Det gjør så vondt til det punktet du mister bevisstheten din og deretter livet, sammen med barnet ditt.", null)
         death()
         return
     }
@@ -409,9 +408,9 @@
 
         addRed("Du sier stopp")
         addGray("Han er minst dobbelt så stor som deg så det nytter ikke å prøve å komme seg løs, han fortsetter.", null)
-        addGray("Du prøver å skrike etter hjelp, men det var ingen som kom.")
+        addGray("Du prøver å skrike etter hjelp, men det er ingen som kommer.")
         addGray("Det har gått noen uker etter hendelsen, og du har enda ikke fått mensen, og heller ingen måte å teste deg.")
-        addGray("Du merker at du begynner å få en liten mage, og du begynner å bli bekymret.", "Hva gjør du nå?")
+        addGray("Du merker at du begynner å få en liten mage, så du begynner å bli bekymret.", "Hva gjør du nå?")
         addButtons(["Fortell mamma", "Ikke si noe"],["fm","isn"],[f3,f4])
         return
     }
@@ -422,7 +421,7 @@
 
         addRed("Du lar han fortsette")
         addGray("Det har gått noen uker etter hendelsen, og du har enda ikke fått mensen, og heller ingen måte å teste deg.")
-        addGray("Du merker at du begynner å få en liten mage, og du begynner å bli bekymret.", "Hva gjør du nå?")
+        addGray("Du merker at du begynner å få en liten mage, så du begynner å bli bekymret.", "Hva gjør du nå?")
         addButtons(["Fortell mamma", "Ikke si noe"],["fm","isn"],[f3,f4])
         return
     }
@@ -457,10 +456,10 @@
         removeEventId("fu", f5)
         removeEventId("ta", f6)
 
-        addRed("Du venter til tiden er inne til å føde")
+        addRed("Du venter til at tiden er inne til å føde")
 
         addGray("Når tiden er inne til å føde, så sliter du veldig", null)
-        addGray("En kombinasjon av at du er ung og at du ikke har fått nok mat gjør at du ikke har nok krefter til å føde.", null)
+        addGray("En kombinasjon av at du er veldig ung og av at du ikke har fått i deg nok mat gjør at du ikke har nok krefter til å føde.", null)
         addGray("Du mister bevisstheten din og deretter livet, sammen med barnet ditt.", null)
         death()
         return
@@ -471,10 +470,10 @@
         removeEventId("ta", f6)
 
         addRed("Du velger å ta abort")
-        addGray("Det finnes flere forskjellige måter på å ta abort", "Hvilken metode ønsker du å gjør?")
+        addGray("Det finnes forskjellige måter på å ta abort på", "Hvilken metode ønsker du å gjøre?")
 
         if (fortellMamma == true) {
-            addButtons(["Stikke seg med noe skarpt", "Drikke noe etsende", "Finn piller på et ulovlig marked"], ["a0","b0","c0"], [aadd13,aadd14,f7])
+            addButtons(["Stikke seg med noe skarpt", "Drikke noe etsende", "Finne piller på et ulovlig marked"], ["a0","b0","c0"], [aadd13,aadd14,f7])
         } else {
             addButtons(["Stikke seg med noe skarpt", "Drikke noe etsende"], ["a0","b0"], [aadd13,aadd14])
         }
@@ -485,11 +484,12 @@
         removeEventId("b0", aadd14)
         removeEventId("c0", f7)
 
-        addRed("Du forsøker å få abortpiller fra et ulovlig marked")
+        addRed("Du forsøker å få abortpiller fra et ulovlig marked", null)
         addGray("Moren din søker etter abortpiller på et ulovlig marked for deg.", null)
         addGray("Moren din klarer å finne en mann som selger abortpiller, og gir pillene til deg.")
         addGray("Senere blir hun arrestert av politiet og fengslet.")
         addGray("Mens moren din er i fengsel, bor du med onkelen din.")
+        addGray("Du finner senere ut at pillene har fungert")
         win()
         return
     }
@@ -500,8 +500,8 @@
         removeEventId("c0", f7)
 
         addRed("Du bestemmer deg for å stikke deg selv")
-        addGray("Du fant den skarpeste kniven i skuffen og stakk deg selv i livmoren.", null)
-        addGray("Det gjør så vondt til det punktet du mister bevisstheten din og deretter livet, sammen med bayen.", null)
+        addGray("Du finner den skarpeste kniven i skuffen og stikker deg selv i livmoren.", null)
+        addGray("Det gjør så vondt til det punktet du mister bevisstheten din og deretter livet, sammen med barnet ditt.", null)
         death()
         return
     }
@@ -513,7 +513,7 @@
 
         addRed("Du bestemmer deg for å drikke noe etsende")
         addGray("Du finner frem det sterkeste vaskemiddelet du har, og drikker det", null)
-        addGray("Det gjør så vondt til det punktet du mister bevisstheten din og deretter livet, sammen med bayen.", null)
+        addGray("Det gjør så vondt til det punktet du mister bevisstheten din og deretter livet, sammen med barnet ditt.", null)
         death()
         return
     }
