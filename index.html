@@ -1,3 +1,4 @@
+
 <!doctype html>
     <html>
         <head>
@@ -10,7 +11,11 @@
             <div class="info">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Achtung.svg" alt="Advarsel" style="width: 50%;">
                 <h2>Advarsel!</h2>
-                <p>Følgende quiz innholder materiale som fremstiller voldtekt og vold og kan dermed være sårende eller traumatiserende for enkelte.</p>
+                <p>Følgende quiz innholder materiale som fremstiller overgrep og vold som kan være sårende eller traumatiserende for enkelte.</p>
+            </div>
+
+            <div class ="info">
+                <p>Makter du å holde ut helt til slutten?</p>
             </div>
 
             <button id="startQuiz">Start Quiz</button>
@@ -48,6 +53,7 @@
 .info {
     width: 80%;
     background-color: var(--background-color-2);
+    font-size: 1.0em;
     border-radius: 6px;
     text-align: center;
     padding: 20px;
@@ -64,12 +70,12 @@
 }
 
 #quizPart {
-    width: 100%;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 80%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #startQuiz {
@@ -85,25 +91,40 @@
 .buttons {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  font-size: 2.5em;
+  flex-basis: auto;
+  flex-wrap: wrap;
+  gap: 10px 0px
 }
 
 .buttons button {
     border-radius: 6px;
     border: none;
-    font-size: 1.0em;
+    font-size: 1.7em;
     cursor: pointer;
-    margin: 0 10px;
+    margin: 0 5px;
 }
 .buttons button:hover {
     background-color: gray;
 }
 
-
 #startQuiz:hover {
   background-color: darkgreen;
+}
+
+#endQuiz {
+    background-color: orange;
+    color: var(--text-color);
+    border: none;
+    padding: 5% 30%;
+    border-radius: 6px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+#endQuiz:hover {
+    background-color: darkorange;
 }
 
 </style>
@@ -194,7 +215,7 @@
         removeEventId("fv", add7);
         removeEventId("rk", add8);
 
-        addRed("Du fortalte mor og far")
+        addRed("Du forteller mor og far")
         addGray("De kaller deg en hore og kaster deg ut av huset.", "Hva gjør du nå?")
         addButtons(["Fød ungen", "Ta abort"],["fu","ta"],[add9,add10])
 
@@ -234,7 +255,7 @@
         ikkeSiNoe = true
         addRed("Du ringer kjæresten din")
         addGray("Han la på med en gang han hørte nyhetene og kom aldri på skolen dagene fremover.", null)
-        addGray("Etterhvert flytter han og bytter skole.", null)
+        addGray("Etterhvert flytter han og bytter skole.", "Hva gjør du nå?")
         addButtons(["Fød ungen", "Ta abort"],["fu","ta"],[add9,add10])
         return
     }
@@ -248,9 +269,9 @@
             addGray("Foreldrene dine kaster deg ut av huset og kaller deg for en hore.", null)
         }
         addGray("Når tiden var klar til å føde gikk du på et offentlig toalett og begynte å føde.", null)
-        addGray("Etter hvert gjennom fødningen mister du bevisstheten og etterpå livet, sammen med ungen din.")
+        addGray("Etter hvert som fødselen fortsetter fram, mister du bevisstheten og deretter livet, sammen med barnet ditt.")
 
-
+        death()
 
         return
     }
@@ -259,8 +280,10 @@
         removeEventId("fu", add9)
         removeEventId("ta", add10)
 
-        
+        addRed("Du velger å ta abort")
+        addGray("Det finnes mange forskjellige måter å ta abort", "Hvilken metode ønsker du å gjør?")
 
+        addButtons(["Stikke seg med noe skarpt", "Drikke noe etsende", "Finn piller på et ulovlig marked"], ["a0","b0","c0"], [add13,add14,add15])
         return
     }
     function add11() {
@@ -287,6 +310,77 @@
         return
     }
 
+    function add13() {
+        document.getElementById("a0").style.backgroundColor = "darkgray";
+        removeEventId("a0", add13)
+        removeEventId("b0", add14)
+        removeEventId("c0", add15)
+
+        addRed("Du bestemmer deg for å stikke deg selv")
+        addGray("Du fant den skarpeste kniven i skuffen og stakk deg selv i livmoren.", null)
+        addGray("Det gjør så vondt til det punktet du mister bevisstheten din og deretter livet, sammen med bayen.", null)
+        death()
+        return
+    }
+
+    function add14() {
+        document.getElementById("b0").style.backgroundColor = "darkgray";
+        removeEventId("a0", add13)
+        removeEventId("b0", add14)
+        removeEventId("c0", add15)
+
+        addRed("Du bestemmer deg for å drikke noe etsende")
+        addGray("Du finner frem det sterkeste vaskemiddelet du har, og drikker det", null)
+        addGray("Det gjør så vondt til det punktet du mister bevisstheten din og deretter livet, sammen med bayen.", null)
+        death()
+        return
+    }
+
+    function add15() {
+        document.getElementById("c0").style.backgroundColor = "darkgray";
+        removeEventId("a0", add13)
+        removeEventId("b0", add14)
+        removeEventId("c0", add15)
+
+        addRed("Du bestemmer deg for å søke etter abortpiller på et ulovlig marked")
+        addGray("Du går til et ulovlig marked og finner en mann som selger abortpiller.", null)
+        addGray("Du kjøper pillene, men etterhvert finner politiet ut om det og du ender opp i fengsel.", null)
+        addGray("I fengsel så er du heldig nok i å få deg en lege som kan levere barnet ditt.", null)
+        win()
+    }
+
+
+    function deathDeletus() {
+        removeEventId("endQuiz", deathDeletus)
+        quizPart.innerHTML = ""
+        startButton.style.backgroundColor = "green";
+        startButton.addEventListener("click", add0, false);
+        return
+    }
+
+    function death() {
+        var str = '<img src=https://upload.wikimedia.org/wikipedia/commons/0/06/Skull_and_Crossbones.svg alt=death style="width: 50%;"></img>'
+        str += "<h2>Du døde</h2>"
+        str += "<p>Trykk på knappen for å avslutte quizzen.</p>"
+        str += "<button id = 'endQuiz'>Avslutt Quiz</button>"
+
+        quizPart.innerHTML += '<div class="info">'+str+'</div>'
+
+        document.getElementById("endQuiz").addEventListener("click", deathDeletus, false)
+        return
+    }
+
+    
+
+    function win() {
+        var str = "<h2>Du overlevde!</h2>"
+        str += "<p>Selv om ting ikke utviklet seg perfekt, så har du fremdeles muligheter i livet</p>"
+        str += "<p>Trykk på knappen for å avslutte quizzen.</p>"
+        str += "<button id = 'endQuiz'>Avslutt Quiz</button>"
+        quizPart.innerHTML += '<div class="info">'+str+'</div>'
+        document.getElementById("endQuiz").addEventListener("click", deathDeletus, false)
+        return
+    }
 
 
     
