@@ -1,0 +1,308 @@
+<!doctype html>
+    <html>
+        <head>
+            <title>Glemte kriser</title>
+        </head>
+        <body class="main">
+            <h1 class="red">Glemte kriser</h1>
+            <p style="color: black;">Denne nettsiden er ikke relatert til leger uten grenser</p>
+
+            <div class="info">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Achtung.svg" alt="Advarsel" style="width: 50%;">
+                <h2>Advarsel!</h2>
+                <p>Følgende quiz innholder materiale som fremstiller voldtekt og vold og kan dermed være sårende eller traumatiserende for enkelte.</p>
+            </div>
+
+            <button id="startQuiz">Start Quiz</button>
+
+            <div id="quizPart"></div>
+
+        </body>
+    </html>
+
+
+<style>
+:root {
+  --primary-color: #f44336;
+  --text-color: #ffffff;
+  --background-color-1: #e1d9d1;
+  --background-color-2: #808080;
+}
+
+.main {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color-1);
+    color: var(--text-color);
+}
+
+.main * {
+    margin: 20px 10px 20px 10px;
+}
+
+.info {
+    width: 80%;
+    background-color: var(--background-color-2);
+    border-radius: 6px;
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+}
+
+.red {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 20px 20px 20px 20px;
+  font-family: sans-serif;
+  width: 90%;
+  text-align: center;
+}
+
+#quizPart {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#startQuiz {
+    background-color: green;
+    color: var(--text-color);
+    border: none;
+    padding: 5% 30%;
+    border-radius: 6px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5em;
+}
+
+.buttons button {
+    border-radius: 6px;
+    border: none;
+    font-size: 1.0em;
+    cursor: pointer;
+    margin: 0 10px;
+}
+.buttons button:hover {
+    background-color: gray;
+}
+
+
+#startQuiz:hover {
+  background-color: darkgreen;
+}
+
+</style>
+
+<script>
+    const quizPart = document.getElementById("quizPart");
+
+    function addRed(str) {
+       quizPart.innerHTML += '<h2 class="red">'+str+'</h2>'
+       return
+    }
+
+    function addGray(str, str2) {
+        if (str2 == null) {
+            quizPart.innerHTML += '<div class="info"><p>'+str+'</p></div>'
+            return
+        }
+
+        quizPart.innerHTML += '<div class="info"><p>'+str+'</p><p>'+str2+'</p></div>'
+        return
+    }
+
+    function addButtons(strs, ids, funcs)  {
+        var content = "";
+        for (let i = 0; i < strs.length; i++) {
+            content += '<button id='+ids[i]+'>'+strs[i]+'</button>';
+        }
+        quizPart.innerHTML += '<div class="buttons">'+content+'</div>';
+
+        for (let i = 0; i < ids.length; i++) {
+            var button = document.getElementById(ids[i]);
+            button.addEventListener("click", funcs[i], false);
+        }
+
+        return
+    }
+
+    function removeEventId(id, func) {
+        document.getElementById(id).removeEventListener("click", func, false);
+    }
+
+
+    var ikkeSiNoe = false;
+
+
+    function add1() {
+        document.getElementById("Sara").style.backgroundColor = "darkgray";
+        removeEventId("Sara", add1);
+        removeEventId("Aisha", add2);
+
+        addRed("Sara")
+        addGray("Du er en 15 år gammel jente oppdrat av strenge religiøse foreldre og har en hemmelig kjæreste som du besøker for filmkveld. Mens dere ser på film spør han om å ha sex.", "Hva svarer du?")
+        addButtons(["Ja", "Nei"], ["Ja0", "Nei0"], [add3, add4])
+        return
+    }
+    function add2() {
+        return
+    }
+    function add3() {
+        document.getElementById("Ja0").style.backgroundColor = "darkgray";
+        removeEventId("Ja0", add3);
+        removeEventId("Nei0", add4);
+
+        addRed("Du svarte ja")
+        addGray("Dere vet svært lite om temaet og gjør det uten beskyttelse.",null)
+        addGray("Etter noen uker fikk du aldri mensen og etter hvert begynte du å føle kvalmen uvanlig ofte.",null)
+
+        addGray("Du kjøpter en graviditetstest og testet positivt","Hva gjør du nå?")
+        addButtons(["Fortell mor og far", "Ikke si noe", "Fortell vennine", "Ring kjæresten"], ["fmog","isn","fv","rk"], [add5,add6,add7,add8])
+
+        return
+    }
+    function add4() {
+        document.getElementById("Nei0").style.backgroundColor = "darkgray";
+        removeEventId("Ja0", add3);
+        removeEventId("Nei0", add4);
+
+        addRed("Du svarte nei")
+        addGray("Han begynner uansett", "Hva gjør du nå?")
+        addButtons(["Stopp han", "La han fortsette"], ["sh", "lhf"], [add11, add12])
+
+        return
+    }
+    function add5() {
+        document.getElementById("fmog").style.backgroundColor = "darkgray";
+        removeEventId("fmog", add5);
+        removeEventId("isn", add6);
+        removeEventId("fv", add7);
+        removeEventId("rk", add8);
+
+        addRed("Du fortalte mor og far")
+        addGray("De kaller deg en hore og kaster deg ut av huset.", "Hva gjør du nå?")
+        addButtons(["Fød ungen", "Ta abort"],["fu","ta"],[add9,add10])
+
+        return
+    }
+    function add6() {
+        document.getElementById("isn").style.backgroundColor = "darkgray";
+        removeEventId("fmog", add5);
+        removeEventId("isn", add6);
+        removeEventId("fv", add7);
+        removeEventId("rk", add8);
+        addRed("Du sier ikke noe")
+        ikkeSiNoe = true
+        addGray("Hva gjør du nå?", null)
+        addButtons(["Fød ungen", "Ta abort"],["fu","ta"],[add9,add10])
+        return
+    }
+    function add7() {
+        document.getElementById("fv").style.backgroundColor = "darkgray";
+        removeEventId("fmog", add5);
+        removeEventId("isn", add6);
+        removeEventId("fv", add7);
+        removeEventId("rk", add8);
+        ikkeSiNoe = true
+        addRed("Du forteller en vennine")
+        addGray("De kaller deg en hore og nå går det rykter om deg rundt hele skolen.", "Hva gjør du nå?")
+        addButtons(["Fød ungen", "Ta abort"],["fu","ta"],[add9,add10])
+
+        return
+    }
+    function add8() {
+        document.getElementById("rk").style.backgroundColor = "darkgray";
+        removeEventId("fmog", add5);
+        removeEventId("isn", add6);
+        removeEventId("fv", add7);
+        removeEventId("rk", add8);
+        ikkeSiNoe = true
+        addRed("Du ringer kjæresten din")
+        addGray("Han la på med en gang han hørte nyhetene og kom aldri på skolen dagene fremover.", null)
+        addGray("Etterhvert flytter han og bytter skole.", null)
+        addButtons(["Fød ungen", "Ta abort"],["fu","ta"],[add9,add10])
+        return
+    }
+    function add9() {
+        document.getElementById("fu").style.backgroundColor = "darkgray";
+        removeEventId("fu", add9)
+        removeEventId("ta", add10)
+
+        addRed("Du venter til tiden er inne å føde")
+        if (ikkeSiNoe == true) {
+            addGray("Foreldrene dine kaster deg ut av huset og kaller deg for en hore.", null)
+        }
+        addGray("Når tiden var klar til å føde gikk du på et offentlig toalett og begynte å føde.", null)
+        addGray("Etter hvert gjennom fødningen mister du bevisstheten og etterpå livet, sammen med ungen din.")
+
+
+
+        return
+    }
+    function add10() {
+        document.getElementById("ta").style.backgroundColor = "darkgray";
+        removeEventId("fu", add9)
+        removeEventId("ta", add10)
+
+        
+
+        return
+    }
+    function add11() {
+        document.getElementById("sh").style.backgroundColor = "darkgray";
+        removeEventId("sh", add11)
+        removeEventId("lhf", add12)
+
+        addRed("Du prøver å stoppe han")
+        addGray("Han bruker vold og fortsetter likevel.", null)
+        addGray("Etter noen uker fikk du aldri mensen og etter hvert begynte du å føle kvalmen uvanlig ofte.",null)
+        addButtons(["Fortell mor og far", "Ikke si noe", "Fortell vennine", "Ring kjæresten"], ["fmog","isn","fv","rk"], [add5,add6,add7,add8])
+
+
+        return
+    }
+    function add12() {
+        document.getElementById("lhf").style.backgroundColor = "darkgray";
+        removeEventId("sh", add11)
+        removeEventId("lhf", add12)
+
+        addRed("Du lar han fortsette")
+        addGray("Etter noen uker fikk du aldri mensen og etter hvert begynte du å føle kvalmen uvanlig ofte.",null)
+        addButtons(["Fortell mor og far", "Ikke si noe", "Fortell vennine", "Ring kjæresten"], ["fmog","isn","fv","rk"], [add5,add6,add7,add8])
+        return
+    }
+
+
+
+    
+    function add0() {
+        startButton.style.backgroundColor = "darkgreen";
+        startButton.removeEventListener("click", add0, false);
+
+        ikkeSiNoe = false;
+
+        addRed("velg en person du vil vite mer om")
+        addButtons(["Sara", "Aisha"], ["Sara", "Aisha"], [add1, add2])
+    }
+
+    const startButton = document.getElementById("startQuiz");
+    startButton.addEventListener("click", add0, false);
+
+
+
+</script>
