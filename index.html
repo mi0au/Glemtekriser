@@ -6,7 +6,7 @@
         </head>
         <body class="main">
             <h1 class="red">Glemte kriser</h1>
-            <p style="color: black;">Denne nettsiden er ikke relatert til leger uten grenser</p>
+            <b style="color: black;">Denne nettsiden er ikke relatert til leger uten grenser</b>
 
             <div class="info">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Achtung.svg" alt="Advarsel" style="width: 50%;">
@@ -101,8 +101,8 @@
 
 .buttons button {
     border-radius: 6px;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border: none;
     font-size: 1.9em;
     cursor: pointer;
@@ -166,11 +166,19 @@
     }
 
     function removeEventId(id, func) {
-        document.getElementById(id).removeEventListener("click", func, false);
+        var a = document.getElementById(id)
+        
+        if (a == null) {
+            return
+        }
+
+        a.removeEventListener("click", func, false);
+        return
     }
 
 
     var ikkeSiNoe = false;
+    var fortellMamma = false;
 
 
     function add1() {
@@ -184,6 +192,15 @@
         return
     }
     function add2() {
+        document.getElementById("Aisha").style.backgroundColor = "darkgray";
+        removeEventId("Sara", add1);
+        removeEventId("Aisha", add2);
+
+        addRed("Aisha")
+        addGray("Du er en 14 år gammel jente oppdratt av en alene mor og en onkel. Familien sliter med å få nok penger til et helt måltid.",null)
+        addGray("En dag, mens du sover, kommer onkelen din inn på rommet ditt og utsetter deg voldtekt", "Hva gjør du nå?")
+        addButtons(["Si stopp", "La han"], ["sh", "lh"], [f1,f2])
+
         return
     }
     function add3() {
@@ -191,7 +208,7 @@
         removeEventId("Ja0", add3);
         removeEventId("Nei0", add4);
 
-        addRed("Du svarte ja")
+        addRed("Du svarer ja")
         addGray("Dere vet svært lite om temaet og gjør det uten beskyttelse.",null)
         addGray("Etter noen uker fikk du aldri mensen og etter hvert begynte du å føle kvalmen uvanlig ofte.",null)
 
@@ -205,7 +222,7 @@
         removeEventId("Ja0", add3);
         removeEventId("Nei0", add4);
 
-        addRed("Du svarte nei")
+        addRed("Du svarer nei")
         addGray("Han begynner uansett", "Hva gjør du nå?")
         addButtons(["Stopp han", "La han fortsette"], ["sh", "lhf"], [add11, add12])
 
@@ -267,7 +284,7 @@
         removeEventId("fu", add9)
         removeEventId("ta", add10)
 
-        addRed("Du venter til tiden er inne å føde")
+        addRed("Du venter til tiden er inne til å føde")
         if (ikkeSiNoe == true) {
             addGray("Foreldrene dine kaster deg ut av huset og kaller deg for en hore.", null)
         }
@@ -284,7 +301,7 @@
         removeEventId("ta", add10)
 
         addRed("Du velger å ta abort")
-        addGray("Det finnes mange forskjellige måter å ta abort", "Hvilken metode ønsker du å gjør?")
+        addGray("Det finnes flere forskjellige måter på å ta abort", "Hvilken metode ønsker du å gjør?")
 
         addButtons(["Stikke seg med noe skarpt", "Drikke noe etsende", "Finn piller på et ulovlig marked"], ["a0","b0","c0"], [add13,add14,add15])
         return
@@ -312,7 +329,6 @@
         addButtons(["Fortell mor og far", "Ikke si noe", "Fortell vennine", "Ring kjæresten"], ["fmog","isn","fv","rk"], [add5,add6,add7,add8])
         return
     }
-
     function add13() {
         document.getElementById("a0").style.backgroundColor = "darkgray";
         removeEventId("a0", add13)
@@ -325,7 +341,6 @@
         death()
         return
     }
-
     function add14() {
         document.getElementById("b0").style.backgroundColor = "darkgray";
         removeEventId("a0", add13)
@@ -338,7 +353,6 @@
         death()
         return
     }
-
     function add15() {
         document.getElementById("c0").style.backgroundColor = "darkgray";
         removeEventId("a0", add13)
@@ -347,12 +361,10 @@
 
         addRed("Du bestemmer deg for å søke etter abortpiller på et ulovlig marked")
         addGray("Du går til et ulovlig marked og finner en mann som selger abortpiller.", null)
-        addGray("Du kjøper pillene, men etterhvert finner politiet ut om det og du ender opp i fengsel.", null)
-        addGray("I fengsel så er du heldig nok i å få deg en lege som kan levere barnet ditt.", null)
+        addGray("Du kjøper og tar pillene, men etterhvert finner politiet ut om det og du ender opp i fengsel.", null)
+        addGray("I fengsel så finner du ut at abortpillene har fungert, og slipper å føde.", null)
         win()
     }
-
-
     function deathDeletus() {
         removeEventId("endQuiz", deathDeletus)
         quizPart.innerHTML = ""
@@ -360,7 +372,6 @@
         startButton.addEventListener("click", add0, false);
         return
     }
-
     function death() {
         var str = '<img src=https://upload.wikimedia.org/wikipedia/commons/0/06/Skull_and_Crossbones.svg alt=death style="width: 50%;"></img>'
         str += "<h2>Du døde</h2>"
@@ -372,9 +383,6 @@
         document.getElementById("endQuiz").addEventListener("click", deathDeletus, false)
         return
     }
-
-    
-
     function win() {
         var str = "<h2>Du overlevde!</h2>"
         str += "<p>Selv om ting ikke utviklet seg perfekt, så har du fremdeles muligheter i livet</p>"
@@ -384,22 +392,132 @@
         document.getElementById("endQuiz").addEventListener("click", deathDeletus, false)
         return
     }
-
-
-    
     function add0() {
         startButton.style.backgroundColor = "darkgreen";
         startButton.removeEventListener("click", add0, false);
 
+        fortellMamma = false;
         ikkeSiNoe = false;
 
         addRed("velg en person du vil vite mer om")
         addButtons(["Sara", "Aisha"], ["Sara", "Aisha"], [add1, add2])
     }
+    function f1() {
+        document.getElementById("sh").style.backgroundColor = "darkgray";
+        removeEventId("sh", f1)
+        removeEventId("lhf", f2)
+
+        addRed("Du sier stopp")
+        addGray("Han er minst dobbelt så stor som deg så det nytter ikke å prøve å komme seg løs, han fortsetter.", null)
+        addGray("Du prøver å skrike etter hjelp, men det var ingen som kom.")
+        addGray("Det har gått noen uker etter hendelsen, og du har enda ikke fått mensen, og heller ingen måte å teste deg.")
+        addGray("Du merker at du begynner å få en liten mage, og du begynner å bli bekymret.", "Hva gjør du nå?")
+        addButtons(["Fortell mamma", "Ikke si noe"],["fm","isn"],[f3,f4])
+        return
+    }
+    function f2() {
+        document.getElementById("sh").style.backgroundColor = "darkgray";
+        removeEventId("sh", f1)
+        removeEventId("lhf", f2)
+
+        addRed("Du lar han fortsette")
+        addGray("Det har gått noen uker etter hendelsen, og du har enda ikke fått mensen, og heller ingen måte å teste deg.")
+        addGray("Du merker at du begynner å få en liten mage, og du begynner å bli bekymret.", "Hva gjør du nå?")
+        addButtons(["Fortell mamma", "Ikke si noe"],["fm","isn"],[f3,f4])
+        return
+    }
+    function f3() {
+        document.getElementById("fm").style.backgroundColor = "darkgray";
+        removeEventId("fm", f3)
+        removeEventId("isn", f4)
+
+        addRed("Du forteller mamma")
+        fortellMamma = true;
+
+        addGray("Hun gir deg en stor klem og forteller deg at ingenting kan forandre hvor mye hun er glad i deg. Hun forsikrer deg at alt vil gå bra.", "Hva gjør du nå?")
+
+        addButtons(["Fød ungen", "Ta abort"],["fu","ta"],[f5,f6])
+
+        return
+    }
+    function f4() {
+        document.getElementById("isn").style.backgroundColor = "darkgray";
+        removeEventId("fm", f3)
+        removeEventId("isn", f4)
+
+        addRed("Du sier ikke noe")
+        addGray("Hva gjør du nå?", null)
+
+        addButtons(["Fød ungen", "Ta abort"],["fu","ta"],[f5,f6])
+
+        return
+    }
+    function f5() {
+        document.getElementById("fu").style.backgroundColor = "darkgray";
+        removeEventId("fu", f5)
+        removeEventId("ta", f6)
+
+        addRed("Du venter til tiden er inne til å føde")
+
+        addGray("Når tiden er inne til å føde, så sliter du veldig", null)
+        addGray("En kombinasjon av at du er ung og at du ikke har fått nok mat gjør at du ikke har nok krefter til å føde.", null)
+        addGray("Du mister bevisstheten din og deretter livet, sammen med barnet ditt.", null)
+        death()
+        return
+    }
+    function f6() {
+        document.getElementById("ta").style.backgroundColor = "darkgray";
+        removeEventId("fu", f5)
+        removeEventId("ta", f6)
+
+        addRed("Du velger å ta abort")
+        addGray("Det finnes flere forskjellige måter på å ta abort", "Hvilken metode ønsker du å gjør?")
+
+        if (fortellMamma == true) {
+            addButtons(["Stikke seg med noe skarpt", "Drikke noe etsende", "Finn piller på et ulovlig marked"], ["a0","b0","c0"], [aadd13,aadd14,f7])
+        } else {
+            addButtons(["Stikke seg med noe skarpt", "Drikke noe etsende"], ["a0","b0"], [aadd13,aadd14])
+        }
+    }
+    function f7() {
+        document.getElementById("c0").style.backgroundColor = "darkgray";
+        removeEventId("a0", aadd13)
+        removeEventId("b0", aadd14)
+        removeEventId("c0", f7)
+
+        addRed("Du forsøker å få abortpiller fra et ulovlig marked")
+        addGray("Moren din søker etter abortpiller på et ulovlig marked for deg.", null)
+        addGray("Moren din klarer å finne en mann som selger abortpiller, og gir pillene til deg.")
+        addGray("Senere blir hun arrestert av politiet og fengslet")
+        addGray("Mens moren din er i fengsel, så bor du med onkelen din")
+        win()
+        return
+    }
+    function aadd13() {
+        document.getElementById("a0").style.backgroundColor = "darkgray";
+        removeEventId("a0", aadd13)
+        removeEventId("b0", aadd14)
+        removeEventId("c0", f7)
+
+        addRed("Du bestemmer deg for å stikke deg selv")
+        addGray("Du fant den skarpeste kniven i skuffen og stakk deg selv i livmoren.", null)
+        addGray("Det gjør så vondt til det punktet du mister bevisstheten din og deretter livet, sammen med bayen.", null)
+        death()
+        return
+    }
+    function aadd14() {
+        document.getElementById("b0").style.backgroundColor = "darkgray";
+        removeEventId("a0", aadd13)
+        removeEventId("b0", aadd14)
+        removeEventId("c0", f7)
+
+        addRed("Du bestemmer deg for å drikke noe etsende")
+        addGray("Du finner frem det sterkeste vaskemiddelet du har, og drikker det", null)
+        addGray("Det gjør så vondt til det punktet du mister bevisstheten din og deretter livet, sammen med bayen.", null)
+        death()
+        return
+    }
 
     const startButton = document.getElementById("startQuiz");
     startButton.addEventListener("click", add0, false);
-
-
-
 </script>
